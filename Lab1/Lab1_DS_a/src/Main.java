@@ -8,17 +8,17 @@ import javax.swing.event.ChangeListener;
 
 public class Main {
     public static void main(String[] args) {
-        Manager manager = new Manager();
+        Program program = new Program();
     }
 }
 
-class Manager {
+class Program {
     MyThread threadFirst;
     MyThread threadSecond;
     UI ui;
     SpinnerEventChanger spinnerEventChanger;
 
-    public Manager() {
+    public Program() {
         ui = new UI();
         threadFirst = new MyThread(ui.SliderThread, 10);
         threadSecond = new MyThread(ui.SliderThread, 90);
