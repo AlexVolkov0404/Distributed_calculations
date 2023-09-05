@@ -86,16 +86,9 @@ class UI {
 class MyThread extends Thread {
     JSlider SliderThread;
     int numberToSlider;
-    int threadPriority = 1;
+
     boolean IsContinue = true;
 
-    public void SetThreadPriority(int newPriority) {
-        threadPriority = newPriority;
-    }
-
-    public int GetThreadPriority() {
-        return threadPriority;
-    }
 
     public void CloseThreadCycle() {
         IsContinue = false;
@@ -106,11 +99,11 @@ class MyThread extends Thread {
             try {
                 int newSliderNumber = (int) SliderThread.getValue();
                 if (newSliderNumber > numberToSlider)
-                    newSliderNumber -= threadPriority;
+                    newSliderNumber -= 1;
                 else if (newSliderNumber < numberToSlider)
-                    newSliderNumber += threadPriority;
+                    newSliderNumber += 1;
                 SliderThread.setValue(newSliderNumber);
-                Thread.sleep(10);
+                //Thread.sleep(10);
             } catch (Exception e) {
                 System.out.println("Exception is caught");
             }
@@ -140,9 +133,9 @@ class SpinnerEventChanger implements ChangeListener {
         int value = (int) source.getValue();
 
         if (source.equals(ui.SpinnerFirstThread)) {
-            threadFirst.SetThreadPriority(value);
+            threadFirst.setPriority(value);
         } else if (source.equals(ui.SpinnerSecondThread)) {
-            threadSecond.SetThreadPriority(value);
+            threadSecond.setPriority(value);
         }
     }
 }
