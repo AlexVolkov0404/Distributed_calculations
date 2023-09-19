@@ -8,7 +8,7 @@ class UI {
     public JSpinner SpinnerSecondThread;
 
     public UI() {
-        Frame = new JFrame("Thread Example"); // Добавлено название окна
+        Frame = new JFrame("Thread Example");
         StartButton = new JButton("Start!");
         StartButton.setBounds(80, 150, 150, 40);
         Frame.add(StartButton);
@@ -32,7 +32,7 @@ class UI {
 
         Frame.setSize(350, 300);
         Frame.setLayout(null);
-        Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Завершение программы при закрытии окна
+        Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Frame.setVisible(true);
     }
 }
