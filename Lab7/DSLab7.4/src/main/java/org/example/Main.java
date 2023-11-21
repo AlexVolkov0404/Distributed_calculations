@@ -12,8 +12,8 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, TransformerException, SQLException, ClassNotFoundException {
-        XMLRepository repository = new XMLRepository("src/main/resources/groups.xml");
-        //Repository repository = new DBRepository("jdbc:postgresql://localhost:5432/dev", "postgres", "postgres");
+        //XMLRepository repository = new XMLRepository("src/main/resources/groups.xml");
+        Repository repository = new DBRepository("jdbc:postgresql://localhost:5432/dev", "postgres", "alex2704");
 
 
         System.out.println("Groups count is " + repository.countGroups());
