@@ -9,7 +9,7 @@ import java.rmi.registry.Registry;
 public class Server {
     public static void main(String[] args) {
         try {
-            DBRepository repository = new DBRepository("jdbc:postgresql://localhost:5432/dev", "postgres", "postgres");
+            DBRepository repository = new DBRepository("jdbc:postgresql://localhost:5432/dev", "postgres", "alex2704");
 
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.rebind("repository", repository);

@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 
 public class Server {
     public static void main(String[] args) throws RemoteException {
-        Repository innerRepository = new DBRepository("jdbc:postgresql://localhost:5432/dev", "postgres", "postgres");
+        Repository innerRepository = new DBRepository("jdbc:postgresql://localhost:5432/dev", "postgres", "alex2704");
         RemoteServerRepository repository = new RemoteServerRepository(innerRepository, 8008);
         repository.start();
     }
