@@ -26,15 +26,18 @@ public class Repository extends UnicastRemoteObject implements RepositoryInterfa
     public synchronized Contact get(int id) throws RemoteException {
         Contact result = null;
         for (Contact contact: list) {
-            result = contact;
+            if (contact.getId() == id) {
+                result = contact;
+            }
         }
         return result;
     }
 
     @Override
     public synchronized void update(Contact contact) throws RemoteException {
-        list.removeIf(x -> x.getId() == contact.getId());
-        list.add(contact);
+        if (list.removeIf(x -> x.getId() == contact.getId())) {
+            list.add(contact);
+        }
     }
 
     @Override
@@ -49,6 +52,6 @@ public class Repository extends UnicastRemoteObject implements RepositoryInterfa
 
     @Override
     public synchronized List<Contact> findAllByPhone(String phone) throws RemoteException {
-        return list.stream().filter(contact -> contact.getName().equals(phone)).collect(Collectors.toList());
+        return list.stream().filter(contact -> contact.getPhone().equals(phone)).collect(Collectors.toList());
     }
 }

@@ -74,12 +74,14 @@ public class Client {
                     case 5: {
                         System.out.println("Type name:");
                         String name = scanner.nextLine();
+                        name = scanner.nextLine();
                         System.out.println(repository.findAllByName(name));
                         break;
                     }
                     case 6: {
                         System.out.println("Type phone:");
                         String phone = scanner.nextLine();
+                        phone = scanner.nextLine();
                         System.out.println(repository.findAllByPhone(phone));
                         break;
                     }

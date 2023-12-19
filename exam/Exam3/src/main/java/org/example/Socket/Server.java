@@ -49,13 +49,13 @@ public class Server {
 
                 boolean isAlive = true;
                 while (isAlive && clientSocket.isConnected()) {
-                    int operation = in.read();
+                    int operation = in.readInt();
                     switch (operation) {
                         case 0: isAlive = false; break;
                         case 1: {
                             int length = in.readInt();
                             byte[] bytes = new byte[length];
-                            in.read(bytes);
+                            in.readFully(bytes);
 
                             Contact contact = (Contact) Serialization.fromBytes(bytes);
                             repository.create(contact);
@@ -76,7 +76,7 @@ public class Server {
                         case 3: {
                             int length = in.readInt();
                             byte[] bytes = new byte[length];
-                            in.read(bytes);
+                            in.readFully(bytes);
 
                             Contact contact = (Contact) Serialization.fromBytes(bytes);
                             repository.update(contact);
@@ -92,6 +92,7 @@ public class Server {
                         case 5: {
                             int length = in.readInt();
                             byte[] inBytes = new byte[length];
+                            in.readFully(inBytes);
                             String name = (String) Serialization.fromBytes(inBytes);
 
                             List<Contact> contacts = repository.findAllByName(name);
@@ -102,10 +103,13 @@ public class Server {
                                 out.writeInt(bytes.length());
                                 out.writeBytes(bytes);
                             }
+
+                            break;
                         }
                         case 6: {
                             int length = in.readInt();
                             byte[] inBytes = new byte[length];
+                            in.readFully(inBytes);
                             String phone = (String) Serialization.fromBytes(inBytes);
 
                             List<Contact> contacts = repository.findAllByPhone(phone);
@@ -116,6 +120,8 @@ public class Server {
                                 out.writeInt(bytes.length());
                                 out.writeBytes(bytes);
                             }
+
+                            break;
                         }
                     }
                 }

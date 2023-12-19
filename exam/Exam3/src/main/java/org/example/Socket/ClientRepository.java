@@ -44,7 +44,7 @@ public class ClientRepository implements RepositoryInterface {
 
             int length = in.readInt();
             byte[] bytes = new byte[length];
-            in.read(bytes);
+            in.readFully(bytes);
 
             return (Contact) Serialization.fromBytes(bytes);
         } catch (IOException | ClassNotFoundException e) {
@@ -81,7 +81,7 @@ public class ClientRepository implements RepositoryInterface {
             out.writeInt(5);
 
             String outBytes = Serialization.toString(name);
-            out.writeInt(name.length());
+            out.writeInt(outBytes.length());
             out.writeBytes(outBytes);
 
             List<Contact> contacts = new ArrayList<>();
@@ -89,7 +89,7 @@ public class ClientRepository implements RepositoryInterface {
             for (int i = 0; i < count; ++i) {
                 int length = in.readInt();
                 byte[] bytes = new byte[length];
-                in.read(bytes);
+                in.readFully(bytes);
 
                 contacts.add((Contact) Serialization.fromBytes(bytes));
             }
@@ -106,7 +106,7 @@ public class ClientRepository implements RepositoryInterface {
             out.writeInt(6);
 
             String outBytes = Serialization.toString(phone);
-            out.writeInt(phone.length());
+            out.writeInt(outBytes.length());
             out.writeBytes(outBytes);
 
             List<Contact> contacts = new ArrayList<>();
@@ -114,7 +114,7 @@ public class ClientRepository implements RepositoryInterface {
             for (int i = 0; i < count; ++i) {
                 int length = in.readInt();
                 byte[] bytes = new byte[length];
-                in.read(bytes);
+                in.readFully(bytes);
 
                 contacts.add((Contact) Serialization.fromBytes(bytes));
             }

@@ -30,6 +30,7 @@ public class Contact implements Serializable {
     public String toString() {
         return "Contact{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", skype='" + skype + '\'' +
                 ", email='" + email + '\'' +
